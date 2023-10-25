@@ -40,7 +40,7 @@ static pixel PixelCopy(pixel p, int channels)
     {
         r.c[d] = p.c[d];
     }
-    
+
     return r;
 }
 
@@ -53,7 +53,7 @@ static bool PixelEql (pixel a, pixel b, int channels)
         if (a.c[d] != b.c[d])
             return false;
     }
-    
+
     return true;
 }
 
@@ -89,12 +89,12 @@ static pixel PixelGet (unsigned char *image, int height, int width, int channels
     y = (y < 0) ? 0 : (y < height) ? y : (height - 1);
     x = (x < 0) ? 0 : (x < width) ? x : (width - 1);
     k = ((width * y) + x) * channels;
-    
+
     for (d = 0; d < channels; d++)
     {
         p.c[d] = image[k + d];
     }
-    
+
     return p;
 }
 
@@ -126,13 +126,13 @@ static void ScaleN2X (unsigned char *src, int height, int width, int channels, u
         for (x = 0; x < width; x++)
         {
             x2 = x + x;
-            
+
             pB = PixelGet(src, height, width, channels, y - 1, x);
             pD = PixelGet(src, height, width, channels, y, x - 1);
             pE = PixelGet(src, height, width, channels, y, x);
             pF = PixelGet(src, height, width, channels, y, x + 1);
             pH = PixelGet(src, height, width, channels, y + 1, x);
-            
+
             rA = PixelCopy(pE, channels);
             rB = PixelCopy(pE, channels);
             rC = PixelCopy(pE, channels);
@@ -168,7 +168,7 @@ static void ScaleN3X (unsigned char *src, int height, int width, int channels, u
         for (x = 0; x < width; x++)
         {
             x3 = x + x + x;
-            
+
             pA = PixelGet(src, height, width, channels, y - 1, x - 1);
             pB = PixelGet(src, height, width, channels, y - 1, x);
             pC = PixelGet(src, height, width, channels, y - 1, x + 1);
@@ -178,7 +178,7 @@ static void ScaleN3X (unsigned char *src, int height, int width, int channels, u
             pG = PixelGet(src, height, width, channels, y + 1, x - 1);
             pH = PixelGet(src, height, width, channels, y + 1, x);
             pI = PixelGet(src, height, width, channels, y + 1, x + 1);
-            
+
             rA = PixelCopy(pE, channels);
             rB = PixelCopy(pE, channels);
             rC = PixelCopy(pE, channels);
@@ -200,21 +200,21 @@ static void ScaleN3X (unsigned char *src, int height, int width, int channels, u
 
             if (PixelEql(pBH, pE, channels) && PixelEql(pDF, pE, channels))
             {
-				rA = PixelNear(pE, pB, pD, channels);
-				rC = PixelNear(pE, pB, pF, channels);
-				rG = PixelNear(pE, pD, pH, channels);
-				rI = PixelNear(pE, pF, pH, channels);
+                rA = PixelNear(pE, pB, pD, channels);
+                rC = PixelNear(pE, pB, pF, channels);
+                rG = PixelNear(pE, pD, pH, channels);
+                rI = PixelNear(pE, pF, pH, channels);
 
-				pEA = PixelNear(rA, pE, pA, channels);
-				pEC = PixelNear(rC, pE, pC, channels);
-				pEG = PixelNear(rG, pE, pG, channels);
-				pEI = PixelNear(rI, pE, pI, channels);
+                pEA = PixelNear(rA, pE, pA, channels);
+                pEC = PixelNear(rC, pE, pC, channels);
+                pEG = PixelNear(rG, pE, pG, channels);
+                pEI = PixelNear(rI, pE, pI, channels);
 
-				rB = PixelNear(pE, pEA, pEC, channels);
-				rD = PixelNear(pE, pEA, pEG, channels);
-				rF = PixelNear(pE, pEC, pEI, channels);
-				rH = PixelNear(pE, pEG, pEI, channels);
-			}
+                rB = PixelNear(pE, pEA, pEC, channels);
+                rD = PixelNear(pE, pEA, pEG, channels);
+                rF = PixelNear(pE, pEC, pEI, channels);
+                rH = PixelNear(pE, pEG, pEI, channels);
+            }
             PixelSet(res, h3, w3, channels, y3, x3, rA);
             PixelSet(res, h3, w3, channels, y3, x3 + 1, rB);
             PixelSet(res, h3, w3, channels, y3, x3 + 2, rC);

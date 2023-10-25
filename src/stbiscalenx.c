@@ -37,9 +37,9 @@ int main(int argc, char **argv)
             scale = atoi(optarg);
             if ((scale < 2) || (scale > 3))
             {
-				fprintf(stderr, "ERROR: scale coef not {2,3}: %d\n", scale);
-				return 1;
-			}
+                fprintf(stderr, "ERROR: scale coef not {2,3}: %d\n", scale);
+                return 1;
+            }
             break;
         case 'h':
             fhelp = 1;
