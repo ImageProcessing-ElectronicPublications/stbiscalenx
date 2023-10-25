@@ -1,0 +1,45 @@
+.TH "StbIScaleNX" 1 1.0 "25 Oct 2023" "User Manual"
+
+.SH NAME
+stbiscalenx
+
+.SH DESCRIPTION
+Stb Image Scale Near X.
+This algorithm is based on the scale2x pixel graphics algorithm [1].
+In this algorithm, “equals” is replaced by “near”, which allows it to work with full-color graphics.
+The algorithm remained simple, like Scale2x [1].
+This implementation can enlarge the image by 2 and 3 times.
+
+.SH SYNOPSIS
+stbiscalenx [options] image_in out.png
+
+.SH OPTIONS
+.TP
+-k NUM
+scale coef (default 2)
+.TP
+-h
+show this help message and exit
+
+.SH EXAMPLE
+stbiscalenx -k 2 sample.png sample.x2.png 
+ 
+ Load: sample.png
+ image: 65x65:3
+ resize: 130x130:3
+ ScaleNX: 2
+ Save png: sample.x2.png
+
+.SH COPYRIGHT
+This is free and unencumbered software released into the public domain.
+
+.SH SEE ALSO
+convert(1), gm(1), imagew(1)
+
+.SH LINKS
+.TP
+[1]
+https://www.scale2x.it/
+
+.SH CONTACTS
+Website: https://github.com/ImageProcessing-ElectronicPublications/stbiscalenx
