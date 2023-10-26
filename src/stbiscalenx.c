@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     int fhelp = 0;
     int opt;
     size_t szorig, szdest, ki, kd;
-    unsigned char *data = NULL, *resize_data = NULL, *ris_data = NULL;
+    unsigned char *data = NULL, *resize_data = NULL;
     stbi_uc *img = NULL;
 
     while ((opt = getopt(argc, argv, ":k:h")) != -1)

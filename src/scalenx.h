@@ -193,14 +193,6 @@ static void ScaleN3X (unsigned char *src, int height, int width, int channels, u
             if (PixelEql(pBH, pE, channels) && PixelEql(pDF, pE, channels))
             {
                 rA = PixelNear(pE, pB, pD, channels);
-                rB = PixelNear(pE, pB, pF, channels);
-                rC = PixelNear(pE, pH, pD, channels);
-                rD = PixelNear(pE, pH, pF, channels);
-            }
-
-            if (PixelEql(pBH, pE, channels) && PixelEql(pDF, pE, channels))
-            {
-                rA = PixelNear(pE, pB, pD, channels);
                 rC = PixelNear(pE, pB, pF, channels);
                 rG = PixelNear(pE, pD, pH, channels);
                 rI = PixelNear(pE, pF, pH, channels);
